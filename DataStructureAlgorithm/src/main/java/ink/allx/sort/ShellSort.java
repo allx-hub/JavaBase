@@ -4,16 +4,19 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
+@SuppressWarnings("all")
 public class ShellSort {
     public static void main(String[] args) {
         //int[] arr={-2,3,34,45,78,135,32,-43,43,-3};
-        //int j=5;
-        //j-=6;//相当与j=j-6
-        //System.out.println(j);
         //shellsort1(arr);
         //shellsort2(arr);
         //shellsort3(arr);
+    }
 
+    /**
+     * 测试shell排序算法时间
+     */
+    private static void computeTime() {
         int[] arr = new int[80000];
 
         for (int i = 0; i < 80000; i++) {
@@ -110,7 +113,7 @@ public class ShellSort {
                     }
                 }
             }
-            //System.out.println(Arrays.toString(arr));
+            System.out.println(Arrays.toString(arr));
         }
     }
 
@@ -129,10 +132,15 @@ public class ShellSort {
                     arr[j] = temp;//合适的位置进行赋值
                 }
             }
-            //System.out.println(Arrays.toString(arr));
+            System.out.println(Arrays.toString(arr));
         }
     }
 
+    /**
+     * 算法4书中的代码
+     * @param a
+     * @param <AnyType>
+     */
     public static <AnyType extends Comparable<? super AnyType>> void shellsort(AnyType[] a) {
         int j;
 

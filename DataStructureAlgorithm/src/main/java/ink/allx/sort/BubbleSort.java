@@ -1,19 +1,20 @@
 package ink.allx.sort;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class BubbleSort {
     public static void main(String[] args) {
-        //int[] arr = {-2, 3, 34, 45, -43, 43, -3};
-
-        /*
-        for (int i : arr) {
-            System.out.print(i + " ");
-        }
+        int[] arr = {-2, 3, 34, 45, -43, 43, -3};
+        bubble(arr);
         System.out.println(Arrays.toString(arr));
-         */
+    }
 
+    /**
+     * 测试冒泡排序时间
+     */
+    private static void computeTime() {
         //测试花费的时间
         int[] arr = new int[80000];
 
@@ -40,7 +41,8 @@ public class BubbleSort {
         //注意这两层for循环各自表达的意思
         //i表示需要排序的次数：数组大小-1，j是一次排序中的相邻两个位置，注意结束的条件
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - i - 1; j++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {//从开始要比较的元素，这里注意要比到那个元素
+                //每经过一次比较，最大的数就会浮到最后面
                 if (arr[j] > arr[j + 1]) {//如果前一个元素大于后一个元素，就进行交换
                     flag = true;
                     temp = arr[j];
@@ -55,6 +57,7 @@ public class BubbleSort {
             } else {
                 flag = false;
             }
+            System.out.println(Arrays.toString(arr));
         }
     }
 }
