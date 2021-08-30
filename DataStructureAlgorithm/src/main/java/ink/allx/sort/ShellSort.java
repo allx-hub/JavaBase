@@ -7,10 +7,10 @@ import java.util.Date;
 @SuppressWarnings("all")
 public class ShellSort {
     public static void main(String[] args) {
-        //int[] arr={-2,3,34,45,78,135,32,-43,43,-3};
-        //shellsort1(arr);
-        //shellsort2(arr);
-        //shellsort3(arr);
+        int[] arr = {-2, 3, 34, 45, 78, 135, 32, -43, 48, -3};
+        shellsort1(arr);
+        shellsort2(arr);
+        shellsort3(arr);
     }
 
     /**
@@ -35,14 +35,15 @@ public class ShellSort {
         System.out.println(date2);
     }
 
-    //下面三个方法都是通过交换实现的
-    //分成三次实现的
+    /**
+     * 使用逐步推导的方式来编写shell排序，分成三次
+     */
     public static void shellsort(int[] arr) {
         int temp = 0;
         //希尔排序的第一轮排序
         //因为第一轮排序，是将十个数分成了5组
         for (int i = 5; i < arr.length; i++) {
-            //遍历各组中所有的元素，共5组，每组有两个元素，步长为5
+            //遍历各组中所有的元素，共5组，每组有2个元素，步长为5
             for (int j = i - 5; j >= 0; j -= 5) {//j=j-5
                 //如果当前元素大于加上步长后的那个元素，就需要将两者进行交换
                 if (arr[j] > arr[j + 5]) {
@@ -52,9 +53,11 @@ public class ShellSort {
                 }
             }
         }
-        System.out.println(Arrays.toString(arr));
+        System.out.println("第一轮排序之后的数组---->" + Arrays.toString(arr));
 
+        //第二轮排序，是将十个数分成了两组
         for (int i = 2; i < arr.length; i++) {
+            //遍历各组中所有的元素，共2组，每组有5个元素，步长为2
             for (int j = i - 2; j >= 0; j -= 2) {//j=j-2
                 if (arr[j] > arr[j + 2]) {
                     temp = arr[j];
@@ -63,9 +66,11 @@ public class ShellSort {
                 }
             }
         }
-        System.out.println(Arrays.toString(arr));
+        System.out.println("第二轮排序之后的数组---->" +Arrays.toString(arr));
 
+        //第三轮排序，是将十个数分成了一组
         for (int i = 1; i < arr.length; i++) {
+            //遍历各组中所有的元素，共1组，每组有10个元素，步长为1
             for (int j = i - 1; j >= 0; j -= 1) {//j=j-1
                 if (arr[j] > arr[j + 1]) {
                     temp = arr[j];
@@ -74,10 +79,12 @@ public class ShellSort {
                 }
             }
         }
-        System.out.println(Arrays.toString(arr));
+        System.out.println("第三轮排序之后的数组---->" +Arrays.toString(arr));
     }
 
-    //通过一次实现
+    /**
+     * 通过上面的几轮推导改为循环实现
+     */
     public static void shellsort1(int[] arr) {
         int length = arr.length;
         int temp = 0;
@@ -99,10 +106,11 @@ public class ShellSort {
         }
     }
 
-    //老师代码实现：交换法
+    /**
+     * 循环搞定，仍然是通过交换法实现的
+     */
     public static void shellsort2(int[] arr) {
         int temp = 0;
-        //int count=0;
         for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < arr.length; i++) {
                 for (int j = i - gap; j >= 0; j -= gap) {//j=j-5
@@ -117,13 +125,16 @@ public class ShellSort {
         }
     }
 
-    //对希尔排序进行优化，并不是进行交换，而是按照之前的插入排序的移动方法进行的
+    /**
+     * 对希尔排序进行优化，并不是进行交换，而是按照之前的插入排序的移动方法进行的
+     */
     public static void shellsort3(int[] arr) {
         for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             //从第gap个元素，逐个对其所在的组进行直接插入排序
             for (int i = gap; i < arr.length; i++) {
                 int j = i;//记录开始时的下标
                 int temp = arr[j];//记录开始时的值
+                //类似于插入排序的思路
                 if (arr[j] < arr[j - gap]) {//比前一个元素小时才进行向前插值
                     while (j - gap >= 0 && temp < arr[j - gap]) {
                         arr[j] = arr[j - gap];//将j-gap上的值进行后移
@@ -138,6 +149,7 @@ public class ShellSort {
 
     /**
      * 算法4书中的代码
+     *
      * @param a
      * @param <AnyType>
      */
