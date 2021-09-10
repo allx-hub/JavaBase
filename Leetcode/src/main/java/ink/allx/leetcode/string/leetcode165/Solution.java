@@ -1,4 +1,4 @@
-package ink.allx.leetcode.string;
+package ink.allx.leetcode.string.leetcode165;
 
 /**
  * 对比版本号的问题，分割字符串
@@ -6,7 +6,7 @@ package ink.allx.leetcode.string;
  * @Author Allx
  * @Date 2021/9/1 10:07
  */
-public class leetcode165 {
+public class Solution {
     /**
      * 调用库的split方法分割字符串，依次进行比较
      */
